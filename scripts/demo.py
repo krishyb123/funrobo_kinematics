@@ -1,10 +1,6 @@
 from math import *
-import numpy as np
-import funrobo_kinematics.core.utils as ut
 from funrobo_kinematics.core import Visualizer, RobotSim
-from funrobo_kinematics.core.arm_models import (
-    TwoDOFRobotTemplate, ScaraRobotTemplate, FiveDOFRobotTemplate
-)
+from funrobo_kinematics.core.arm_models import TwoDOFRobotTemplate
 
 
 class TwoDOFRobot(TwoDOFRobotTemplate):

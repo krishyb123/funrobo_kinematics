@@ -1,5 +1,4 @@
-# from scripts.demo import TwoDOFRobot
-from solutions.demo_for_class import TwoDOFRobot, ScaraRobot
+from examples.two_dof_fk import TwoDOFRobot
 import funrobo_kinematics.core.utils as ut
 
 from typing import List, Sequence
@@ -12,11 +11,8 @@ import yaml
 # -----------------------------------------------------------------------------
 # Choose which robot model + corresponding test data file to validate.
 
-# robot_model = TwoDOFRobot()
-# test_file = "tests/data/two_dof_fk_test_data.yaml"
-
-robot_model = ScaraRobot()
-test_file = 'tests/data/scara_fk_test_data.yaml'
+robot_model = TwoDOFRobot()
+test_file = "tests/data/two_dof_fk_test_data.yaml"
 
 
 joint_values_list = [ut.sample_valid_joints(robot_model) for _ in range(100)]
@@ -40,7 +36,7 @@ ee_list = data["ee"]
 
 
 @pytest.mark.parametrize(
-    "joint_values, ee",
+    "joint_values, expected_ee",
     list(zip(joint_values_list, ee_list)),
     ids=[f"position_{i}={[round(x,2) for x in ee_list[i]]}" for i, q in enumerate(joint_values_list)]
 )
