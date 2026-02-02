@@ -106,7 +106,8 @@ $ pytest
 
 - Run a specific test file (e.g., the fk solver test):
 ```bash
-$ pytest tests/test_fk.py
+$ pytest tests/test_fk.py -v 
+# option "v" for verbose to see the individual results
 ```
 
 - There is a known error where the pytest fails because of some system-wide dependencies that are unmet. If you encounter that, use this command to run the test:
