@@ -27,4 +27,3 @@ packages = [
 
 [tool.setuptools.package-dir]
 "funrobo_kinematics" = "funrobo_kinematics"
-"funrobo_kinematics.projects" = "projects"
