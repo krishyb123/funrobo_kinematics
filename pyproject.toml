@@ -18,4 +18,13 @@ dependencies = [
 ]
 
 [tool.setuptools]
-packages = ["funrobo_kinematics"]
+packages = [
+  "funrobo_kinematics",
+  "funrobo_kinematics.core",
+  "funrobo_kinematics.projects",
+  "funrobo_kinematics.projects.mp1",
+]
+
+[tool.setuptools.package-dir]
+"funrobo_kinematics" = "funrobo_kinematics"
+"funrobo_kinematics.projects" = "projects"
