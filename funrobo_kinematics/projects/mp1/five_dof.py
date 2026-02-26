@@ -117,4 +117,5 @@ if __name__ == "__main__":
     model = FiveDOFRobot()
     robot = RobotSim(robot_model=model)
     viz = Visualizer(robot=robot)
+    viz.root.tk.call("tk", "scaling", 1.0)  # Avoid Retina clipping on Mac
     viz.run()

@@ -126,18 +126,24 @@ class Visualizer:
         - Left: control panel frame (Tk widgets)
         - Right: plot frame embedding the robot's Matplotlib figure
         """
+        # Allow plot column to expand so 3D view is not cropped (e.g. on Mac Retina)
+        self.root.columnconfigure(1, weight=1)
+        self.root.rowconfigure(0, weight=1)
+
         # Create the control frame for the GUI
         self.control_frame = ttk.Frame(self.root)
         self.control_frame.grid(row=0, column=0, padx=15, pady=15)
         
         # Create the plot frame for the GUI
         self.plot_frame = ttk.Frame(self.root)
-        self.plot_frame.grid(row=0, column=1, padx=10, pady=10)
+        self.plot_frame.grid(row=0, column=1, padx=10, pady=10, sticky="nsew")
+        self.plot_frame.columnconfigure(0, weight=1)
+        self.plot_frame.rowconfigure(0, weight=1)
 
         # Embed the robot's figure into the Tkinter canvas
         self.canvas = FigureCanvasTkAgg(self.robot.fig, master=self.plot_frame)
         self.canvas.draw()
-        self.canvas.get_tk_widget().grid(row=0, column=0)
+        self.canvas.get_tk_widget().grid(row=0, column=0, sticky="nsew")
 
         # Set up the kinematics panel
         self.set_kinematics_panel()
@@ -611,9 +617,10 @@ class RobotSim:
         self.plot_limits = [0.65, 0.65, 0.8]
 
         if self.show_animation:
-            self.fig = Figure(figsize=(12, 10), dpi=100)
-            self.sub1 = self.fig.add_subplot(1,1,1, projection='3d') 
+            self.fig = Figure(figsize=(8, 7), dpi=80)
+            self.sub1 = self.fig.add_subplot(1, 1, 1, projection='3d')
             self.fig.suptitle("Manipulator Kinematics Visualization", fontsize=16)
+            self.fig.tight_layout()
 
         self.init_plot()
 
